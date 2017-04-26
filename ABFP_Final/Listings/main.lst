@@ -1,0 +1,75 @@
+C51 COMPILER V9.54   MAIN                                                                  04/25/2017 12:29:31 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN C:\Users\Guest\Desktop\main.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main.ls
+                    -t) TABS(2) OBJECT(C:\Users\Guest\Desktop\main.obj)
+
+line level    source
+
+   1          #include <reg51.h>
+   2          #include <pwm.h>
+   3          #include <uart.h>
+   4          
+   5          sbit pump = P1^2;
+   6          sbit ir = P3^2;
+   7          unsigned char buffer;
+   8          bit action_flag=0,savepin,check_flag=1;
+   9          unsigned long count[2];
+  10          unsigned int ovf_cnt,ovf_count[2],temp[2],num;
+  11          void delay(unsigned int);
+  12          
+  13          int main(void)
+  14          {
+  15   1        UART_Init(9600);
+  16   1        UART_Transmitstring("UART is :P :Q :D ");
+  17   1        
+  18   1        init_timer0();              //initialize timer 0
+  19   1        EA=1;
+  20   1        pump=0;
+  21   1        pwm(25,0.20);
+  22   1        
+  23   1        while(1)
+  24   1        { if(ir==1)
+  25   2          {
+  26   3            pwm_pin=0;
+  27   3            TR0=0;
+  28   3            UART_Transmitstring(";pump is on ");
+  29   3            UART_Transmitchar(0x0D);
+  30   3            pump = 1;
+  31   3            delay(1000);
+  32   3            pump = 0;
+  33   3            UART_Transmitstring(";pump is off ");
+  34   3            UART_Transmitchar(0x0D);
+  35   3            delay(100);
+  36   3            TR0=1;
+  37   3            while(ir);
+  38   3          }
+  39   2        }
+  40   1        
+  41   1      }
+  42          
+  43          void delay(unsigned int x)
+  44          {
+  45   1        unsigned int i,j;
+  46   1        
+  47   1        for(i=0;i<x;i++)
+  48   1        for(j=0;j<500;j++);
+  49   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    142    ----
+   CONSTANT SIZE    =     45    ----
+C51 COMPILER V9.54   MAIN                                                                  04/25/2017 12:29:31 PAGE 2   
+
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     21    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      3    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
