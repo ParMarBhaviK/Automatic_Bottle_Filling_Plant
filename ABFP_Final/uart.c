@@ -17,7 +17,7 @@ void UART_Init(unsigned long baudrate)
 
 void UART_Receive(void) interrupt 4
 {
-	/*if(RI==1)
+	if(RI==1)
 	{ RI=0;
 		buffer = SBUF;
 		if(buffer == 'f')
@@ -32,7 +32,7 @@ void UART_Receive(void) interrupt 4
 		else
 		{num =  num*10 + (buffer-'0');
 		}
-	}*/
+	}
 }
 
 void UART_Transmitchar(unsigned char x)
@@ -42,7 +42,7 @@ void UART_Transmitchar(unsigned char x)
 	TI=0;
 	
 }
-/*
+
 void UART_Transmitnumber(int num)
 {	unsigned char num0,num1,num2,num3;
 	if(num<0)
@@ -80,7 +80,7 @@ void UART_Transmitnumber(int num)
 	UART_Transmitchar(num+'0');
 	}
 	
-}*/
+}
 
 void UART_Transmitstring(char* str)
 {	while(*str !=0)
