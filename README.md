@@ -1,2 +1,2 @@
 # Automatic_Bottle_Filling_Plant
-A Project on Bottle Filling Using 8051 MCU and live data transmition to remote PC using Bluetooth
+A Project on bottle filling using 8051 MCU and live data transmission of system parameters to remote PC using Bluetooth(HC05)
