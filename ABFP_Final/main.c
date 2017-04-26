@@ -25,12 +25,12 @@ int main(void)
 		{
 			pwm_pin=0;
 			TR0=0;
-			UART_Transmitstring(";pump is on ");
+			UART_Transmitstring("pump is on ");
 			UART_Transmitchar(0x0D);
 			pump = 1;
 			delay(1000);
 			pump = 0;
-			UART_Transmitstring(";pump is off ");
+			UART_Transmitstring("pump is off ");
 			UART_Transmitchar(0x0D);
 			delay(100);
 			TR0=1;
